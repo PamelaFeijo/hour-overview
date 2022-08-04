@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
-import HourOverview from '../views/HourOverview.vue'
+import Vue from 'vue';
+import VueRouter, { RouteConfig } from 'vue-router';
+import EmployeeOverview from '../views/EmployeeOverview.vue';
 
 Vue.use(VueRouter)
 
@@ -8,7 +8,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'home',
-    component: HourOverview
+    component: EmployeeOverview
   },
   {
     path: '/about',
