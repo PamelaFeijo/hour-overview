@@ -100,7 +100,7 @@
 
   export default Vue.extend({
     name: 'HourOverview',
-
+    
     data () {
       return {
         search: '',

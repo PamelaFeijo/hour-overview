@@ -1,13 +1,8 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="orange darken-3"
-      dark
-    >
+    <v-app-bar app color="orange darken-3" dark>
       <span class="mr-2">Hour Overview</span>
     </v-app-bar>
-
     <v-main>
       <router-view/>
     </v-main>
@@ -19,9 +14,5 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'App',
-
-  data: () => ({
-    //
-  }),
 });
 </script>
