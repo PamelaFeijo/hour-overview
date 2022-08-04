@@ -9,7 +9,7 @@
             dark
             @click="openDialog()"
           >
-            Add employee
+           Add employee
           </v-btn>
           <v-card-title>
             <v-text-field
@@ -68,7 +68,7 @@
       return {
         search: '',
         dialog: false,
-        flag: '',
+        flag: 'add',
         headers: [
           {
             text: 'Id',
@@ -95,6 +95,8 @@
       console.log(this.flag)
     },
     editEmployeeDetails(item: any){
+      this.dialog = true;
+      this.flag = "edit";
       console.log(item, "edit item")
     },
     deleteEmployeeDetails(item: any){

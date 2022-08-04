@@ -3,7 +3,7 @@
     <v-dialog  v-model="isDialogOpen" width="500">
     <v-card>
         <v-card-title class="text-h5 grey lighten-2">
-          Add Employee {{employee}}
+          {{flag === 'add' ? "Add Employee" : "Edit Employee" }}
         </v-card-title>
 
         <v-card-actions>
@@ -46,15 +46,17 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            color="primary"
+            color="orange darken-3"
+            class="no-uppercase"
             text
             @click="isDialogOpen = false"
           >
             Cancel
           </v-btn>
           <v-btn
-            color="primary"
-            text
+            color="orange darken-3"
+            class="no-uppercase"
+            dark
             @click="addEmployee()"
           >
             Confirm
@@ -74,6 +76,10 @@
      props: {
       dialog: {
         type: Boolean,
+        required: true
+      },
+      flag: {
+        type: String,
         required: true
       }
     },
@@ -108,3 +114,9 @@
    },
   })
 </script>
+
+<style>
+.no-uppercase {
+  text-transform: none;
+}
+</style>
