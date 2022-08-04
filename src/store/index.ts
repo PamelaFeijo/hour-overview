@@ -15,28 +15,27 @@ const getEmployeeDefaultState = () => {
 
 export default new Vuex.Store({
   state: {
-    countries: [],
+    allEmployees: [],
     employee:  getEmployeeDefaultState()
   },
   getters: {
-    countries(state) {
-      return state.countries;
+    allEmployees(state) {
+      return state.allEmployees;
     },
   },
   mutations: {
-    SET_COUNTRIES(state, countries) {
-      state.countries = countries;
+    SET_EMPLOYEES(state, employees) {
+      state.allEmployees = employees;
     },
     RESET_FORM(state) {
       Object.assign(state.employee, getEmployeeDefaultState());
     }
   },
   actions: {
-    async getAllCountries({ commit }){
+    async getAllEmployees({ commit }){
       try {
         const response = await axios.get(`http://localhost:5000/api/hour`);
-        commit("SET_COUNTRIES", response.data)
-        console.log( response.data)
+        commit("SET_EMPLOYEES", response.data)
       } catch(error){
         console.error(error)
       }
