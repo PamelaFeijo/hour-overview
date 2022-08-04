@@ -24,28 +24,51 @@
             :headers="headers"
             :items="allEmployees"
             :search="search"
-          ></v-data-table>
+          >
+            <template v-slot:item="{ item }">
+              <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.totalWeekHours }}</td>
+                <td>{{ item.hoursWorked }}</td>
+                <td class="text-right">
+                <v-menu>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn color="dark" icon v-bind="attrs" v-on="on">
+                      <v-icon @click="editEmployeeDetails(item)">mdi-account-edit</v-icon>
+                    </v-btn>
+                    <v-btn color="dark" icon v-bind="attrs" v-on="on">
+                      <v-icon @click="deleteEmployeeDetails(item)">mdi-delete</v-icon>
+                    </v-btn>
+                  </template>
+                </v-menu>  
+                </td>
+              </tr>
+            </template>
+        </v-data-table>
         </v-card>
       </template>
     </v-row>
-    <Dialog :dialog.sync="dialog" />
+    <DialogEmployee :dialog.sync="dialog" :flag.sync="flag" />
   </v-container>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
   import { mapActions, mapState } from "vuex";
-  import Dialog from '../components/DialogEmployee.vue';
+  import DialogEmployee from '../components/DialogEmployee.vue';
 
   export default Vue.extend({
     name: 'HourOverview',
     components: {
-      Dialog
+      DialogEmployee
     },
     data () {
       return {
         search: '',
         dialog: false,
+        flag: '',
         headers: [
           {
             text: 'Id',
@@ -57,7 +80,7 @@
           { text: 'Title', value: 'title' },
           { text: 'Total Week Hours', value: 'totalWeekHours' },
           { text: 'Hours Worked', value: 'hoursWorked' },
-          { text: "", value: "data-table-expand", sortable: false }
+          { text: 'Actions', value: "data-table-expand", sortable: false }
         ],
       }
     },
@@ -68,7 +91,15 @@
     ...mapActions(["getAllEmployees"]),
     openDialog(){
       this.dialog = true;
+      this.flag = "add";
+      console.log(this.flag)
     },
+    editEmployeeDetails(item: any){
+      console.log(item, "edit item")
+    },
+    deleteEmployeeDetails(item: any){
+      console.log(item, "delete item")
+    }
   },
    created() {
     this.getAllEmployees();
