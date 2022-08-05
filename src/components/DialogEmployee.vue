@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-dialog  v-model="isDialogOpen" width="500">
-    <v-card>
+      <v-card>
         <v-card-title class="text-h5 grey lighten-2">
           {{flag === 'add' ? "Add Employee" : "Edit Employee" }}
         </v-card-title>
@@ -23,22 +23,24 @@
           label="Designer"
           solo
         ></v-select>
-        Total Week Hours
-        <v-text-field
-          v-model.number="employee.totalWeekHours"
-          type="number"
-          solo
-          dense
-        >
-        </v-text-field>
-        Hours Worked
-        <v-text-field
-          v-model.number="employee.hoursWorked"
-          type="number"
-          solo
-          dense
-        >
-        </v-text-field>
+        <div class="d-flex justify-space-between">
+          Total Week Hours
+          <v-text-field
+            v-model.number="employee.totalWeekHours"
+            type="number"
+            solo
+            dense
+          >
+          </v-text-field>
+          Hours Worked
+          <v-text-field
+            v-model.number="employee.hoursWorked"
+            type="number"
+            solo
+            dense
+          >
+          </v-text-field>
+        </div>
         </v-card-text>
 
         <v-divider></v-divider>
@@ -49,7 +51,7 @@
             color="orange darken-3"
             class="no-uppercase"
             text
-            @click="isDialogOpen = false"
+            @click="closeDialog"
           >
             Cancel
           </v-btn>
@@ -57,19 +59,19 @@
             color="orange darken-3"
             class="no-uppercase"
             dark
-            @click="addEmployee()"
+            @click="addEmployee"
           >
             Confirm
           </v-btn>
         </v-card-actions>
       </v-card>
-      </v-dialog>
+    </v-dialog>
   </v-container>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import { mapState } from "vuex";
+  import { mapActions, mapState } from "vuex";
 
   export default Vue.extend({
     name: 'DialogEmployee',
@@ -101,15 +103,18 @@
       },
     },
     methods: {
+    ...mapActions(["getAllEmployees"]),
     addEmployee(){
-      console.log( this.employee.name, this.employee.title, "state new values");
-      // this.$store.commit("RESET_FORM");
       this.$store.dispatch("addEmployee", {
         name: this.employee.name,
         title: this.employee.title,
         totalWeekHours: this.employee.totalWeekHours,
         hoursWorked: this.employee.hoursWorked
       });
+    },
+    closeDialog(){
+      this.isDialogOpen = false;
+      this.getAllEmployees()
     }
    },
   })

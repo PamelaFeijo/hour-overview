@@ -29,7 +29,11 @@ export default new Vuex.Store({
     },
     RESET_FORM(state) {
       Object.assign(state.employee, getEmployeeDefaultState());
-    }
+    },
+    SET_SELECTED_EMPLOYEE(state, employee) {
+      console.log(employee, 'employee')
+      Vue.set(state, "employee", employee);
+    },
   },
   actions: {
     async getAllEmployees({ commit }){
