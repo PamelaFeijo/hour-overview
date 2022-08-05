@@ -9,7 +9,7 @@
               dark
               @click="openDialog"
             >
-            Add employee
+            Add employee {{employee}}
             </v-btn>
             <v-card-title>
               <v-text-field
@@ -137,6 +137,7 @@
     },
     deleteEmployeeDetails(item: any){
       this.deleteDialog = true;
+      this.$store.commit("SET_SELECTED_EMPLOYEE", item);
       console.log(item, "delete item")
     }
   },
