@@ -1,7 +1,14 @@
 <template>
   <v-app>
     <v-app-bar app color="orange darken-3" dark>
-      <span class="mr-2">Hour Overview</span>
+      <v-img
+        src="./assets/__footerlogo__Bolder┬« logo WHITE - Cropped - No text.png"
+        position="left center"
+        contain
+        max-width="20%"
+        height="70"
+        class="p-2 ml-7"
+      ></v-img>
     </v-app-bar>
     <v-main>
       <router-view/>

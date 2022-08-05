@@ -2,6 +2,9 @@
   <v-container>
       <template>
         <v-card class="mt-6">
+          <v-toolbar class="mb-4 toolbar-background">
+            <v-toolbar-title>Hour Overview</v-toolbar-title>
+          </v-toolbar>
           <div class="d-flex justify-space-between">
             <v-btn
               class="no-uppercase mt-4 ml-5"
@@ -9,7 +12,7 @@
               dark
               @click="openDialog"
             >
-            Add employee {{employee}}
+            Add employee
             </v-btn>
             <v-card-title>
               <v-text-field
@@ -60,7 +63,7 @@
         </v-card-title>
 
         <v-card-text class="mt-5">
-          You are about to delete {{employee.name}} from system.
+          Are you sure you want to delete <b>{{employee.name}}</b> ?
         </v-card-text>
 
         <v-divider></v-divider>
@@ -150,5 +153,8 @@
 <style scoped>
 .no-uppercase {
   text-transform: none;
+}
+.toolbar-background {
+  background-color: rgb(253, 247, 244);
 }
 </style>
